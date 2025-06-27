@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" href="/static/css.css">
+        <link rel="icon" href="/static/imgs/icon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="/static/imgs/icon.ico" type="image/x-icon">
+        <title>{% block title %}{% endblock %}</title>
+        <style>
+            #anek-head{
+                color:white;
+                font: 50px 'MAXFont';
+                text-align: left
+            }
+            .anek-main{
+                background-color: #0A0000;
+                color: white;
+                font: 30px 'MAXFont';
+                text-align: justify;
+                margin-top:30px;
+                margin-left:80px;
+                width:700px;
+                height:100%;
+                padding:30px
+            }
+            .anek-actions {
+                top: 0px;
+                position: absolute;
+                display: flex;
+                gap: 10px;
+                left:330px
+            }
+
+            .like-btn, .dislike-btn {
+                padding: 8px 16px;
+                font-size: 76px;
+                border: none;
+                border-radius: 4px;
+                transition: transform 0.1s ease, box-shadow 0.1s ease;
+                transform: scale(1);
+                box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+                }
+
+                .like-btn:active{
+                    transform: scale(0.95);
+                    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+                    color: #DF4200
+            }
+            
+            .dislike-btn:active {
+                transform: scale(0.95);
+                box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+                color: #626288
+            }
+
+            .like-btn {
+                background-color: #0A0000;
+                color: white;
+            }
+
+            .dislike-btn {
+                background-color: #0A0000;
+                color: white;
+            }
+            .like-btn:active{
+                
+            }
+        </style>
+</head>
+    <body>
+        
+        <div class="menu-tab">
+        <div class="tab-handle"></div>
+        <nav class="tab-menu">
+            <a class='disabled'>НАВИГАЦИЯ</a>
+            <a  href="/disclaimer">ДИСКЛЕЙМЕР</a>
+            <a  href="/makan">Макан</a>
+            <a  href="/zapovedi">Заповеди</a>
+            <a  href="/fathers">Отцы</a>
+            <a  href="/gto">ГТО Максизма</a>
+            <a  href="/molitvi">Молитвы</a>
+            <a  href="/plani">Планы</a>
+            <a  href="/achivki">Ачивки Максизма</a>
+            <a  href="/partners">Наши партнёры</a>
+            <a  href="/frendi">Наши Друзья</a>
+            <a  href="/vragi">Враги</a>
+            <a  href="/pozor">Доска позора</a>
+            <a  href="/hvala">Доска почёта</a>
+            <a  href="/party">Члены партии</a>
+            <a  href="/literature">Литература</a>
+            <a  href="/zhidhaha">Анекдоты про евреев</a>
+        </nav>
+        </div>
+        <div class='head'><span id='title'>{% block head %}{% endblock %}</span></div>
+        <div class='triangle'></div>
+        
+        <div class='anek-main'>
+            {% block main %}{% endblock %}
+        </div>
+        <div class='anek-actions'>
+            <button class='like-btn' data-anek-id="{{no}}">🔥 {{likes}}</button>
+            <button class='dislike-btn' data-anek-id="{{no}}">🗿 {{dis}}</button>
+        </div>
+        <script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Обработчик для лайков
+    document.querySelectorAll('.like-btn').forEach(btn => {
+        btn.addEventListener('click', async function() {
+            const anekId = this.dataset.anekId;
+            try {
+                const response = await fetch(`/like/${anekId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                const result = await response.json();
+                if (result.status === 'success') {
+                    this.textContent = `🔥 ${result.likes}`;
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+    });
+
+    // Обработчик для дизлайков
+    document.querySelectorAll('.dislike-btn').forEach(btn => {
+        btn.addEventListener('click', async function() {
+            const anekId = this.dataset.anekId;
+            try {
+                const response = await fetch(`/dislike/${anekId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                const result = await response.json();
+                if (result.status === 'success') {
+                    this.textContent = `🗿 ${result.dislikes}`;
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+    });
+});
+</script>
+        <script src='/static/js.js'></script>
+    </body>
+</html>

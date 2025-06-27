@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Меню-закладка</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            /* Чтобы было видно работу меню */
+            min-height: 200vh;
+        }
+
+        /* Контейнер меню */
+        .menu-tab {
+            position: fixed;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            display: flex;
+            z-index: 1000;
+        }
+
+        /* Полоска-закладка */
+        .tab-handle {
+            background: #333;
+            color: white;
+            padding: 15px 5px;
+            writing-mode: vertical-rl; /* Текст вертикально */
+            text-align: center;
+            cursor: pointer;
+            border-radius: 5px 0 0 5px;
+            transition: all 0.3s;
+            user-select: none; /* Чтобы текст не выделялся */
+        }
+
+        .tab-handle:hover {
+            background: #444;
+        }
+
+        /* Выдвигающееся меню */
+        .tab-menu {
+            width: 0;
+            background: #444;
+            overflow: hidden;
+            transition: width 0.3s ease;
+        }
+
+        .tab-menu a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 15px 20px;
+            border-bottom: 1px solid #555;
+            white-space: nowrap;
+        }
+
+        .tab-menu a:hover {
+            background: #555;
+        }
+
+        /* Класс для открытого состояния */
+        .menu-tab.active .tab-menu {
+            width: 200px;
+        }
+
+        /* Иконка меняется при открытии */
+        .menu-tab.active .tab-handle::after {
+            content: "×";
+        }
+        .menu-tab .tab-handle::after {
+            content: "☰";
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Полоска-закладка и меню -->
+    <div class="menu-tab">
+        <div class="tab-handle"></div>
+        <nav class="tab-menu">
+            <a href="#">Главная</a>
+            <a href="#">О нас</a>
+            <a href="#">Услуги</a>
+            <a href="#">Контакты</a>
+        </nav>
+    </div>
+
+    <script>
+        const menuTab = document.querySelector('.menu-tab');
+        const tabHandle = document.querySelector('.tab-handle');
+
+        // Открытие/закрытие по клику
+        tabHandle.addEventListener('click', (e) => {
+            e.stopPropagation(); // Чтобы не срабатывало закрытие при клике на саму кнопку
+            menuTab.classList.toggle('active');
+        });
+
+        // Закрытие при клике в любом месте страницы
+        document.addEventListener('click', () => {
+            menuTab.classList.remove('active');
+        });
+
+        // Предотвращаем закрытие при клике внутри меню
+        document.querySelector('.tab-menu').addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>МАКСИЗМ &lt;АНЕКДОТЫ&gt;</title>
+        <link rel="stylesheet" href="static/css.css">
+        <link rel="icon" href="static/imgs/icon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="static/imgs/icon.ico" type="image/x-icon">
+    </head>
+    <body>
+<style>#anekd-main{
+    background-color: #0A0000;
+    width:500px;
+    height:100%;
+    color:white;
+    font: 50px 'MAXFont';
+padding:14px;
+margin-top:20px;
+margin-left:250px
+}
+a:link{
+    text-decoration-line: none
+}</style>
+        <div class="menu-tab">
+        <div class="tab-handle"></div>
+        <nav class="tab-menu">
+            <a class='disabled'>НАВИГАЦИЯ</a>
+            <a  href="/disclaimer">ДИСКЛЕЙМЕР</a>
+            <a  href="/makan">Макан</a>
+            <a  href="/zapovedi">Заповеди</a>
+            <a  href="/fathers">Отцы</a>
+            <a  href="/gto">ГТО Максизма</a>
+            <a  href="/molitvi">Молитвы</a>
+            <a  href="/plani">Планы</a>
+            <a  href="/achivki">Ачивки Максизма</a>
+            <a  href="/partners">Наши партнёры</a>
+            <a  href="/frendi">Наши Друзья</a>
+            <a  href="/vragi">Враги</a>
+            <a  href="/pozor">Доска позора</a>
+            <a  href="/hvala">Доска почёта</a>
+            <a  href="/party">Члены партии</a>
+            <a  href="/literature">Литература</a>
+            <a  href="/zhidhaha">Анекдоты про евреев</a>
+        </nav>
+        </div>
+        <div class='head'><span id='title'>МАКСИЗМ — АНЕКДОТЫ</span></div>
+        <div class='triangle'></div>
+        <div id='anekd-main'></div>
+        <script>
+	fetch('get-aneks')
+	.then(response=>response.json())
+	.then(data=>{
+	console.log(data);
+	let text='';
+	for (let i of data){
+	text=text+'<a href="/zhidhaha/'+String(i.id)+'">Анекдот #'+String(i.id)+'</a>⠀⠀'+String(i.likes)+'🔥|'+String(i.dis)+'🗿\n'
+	};
+	let anekmain=document.getElementById('anekd-main');
+	anekmain.innerHTML=text
+	});
+	</script>
+        <script src='static/js.js'></script>
+    </body>
+</html>

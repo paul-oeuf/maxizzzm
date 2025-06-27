@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<!--/*сделат кнопки респетка и счетчик под каждым отцом
+можно еще сделать гиперссылку на картинку с страницей с подборкой фото с чернвми лицами
+*/-->
+
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" href="static/css.css">
+        <link rel="icon" href="static/imgs/icon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="static/imgs/icon.ico" type="image/x-icon">
+        <title>МАКСИЗМ &lt;ОТЦЫ&gt;</title>
+        <script>
+        fetch('https://ipapi.co/json/')
+          .then(response => response.json())
+          .then(data => {
+            if (data.country === 'RU') {
+              window.location.href = '/ru';
+            }
+          })
+          .catch(error => console.log('Ошибка:', error));
+        </script>
+    </head>
+    <body>
+        <div class="menu-tab">
+        <div class="tab-handle"></div>
+        <nav class="tab-menu">
+            <a class='disabled'>НАВИГАЦИЯ</a>
+            <a  href="/disclaimer">ДИСКЛЕЙМЕР</a>
+            <a  href="/makan">Макан</a>
+            <a  href="/zapovedi">Заповеди</a>
+            <a  href="/fathers">Отцы</a>
+            <a  href="/gto">ГТО Максизма</a>
+            <a  href="/molitvi">Молитвы</a>
+            <a  href="/plani">Планы</a>
+            <a  href="/achivki">Ачивки Максизма</a>
+            <a  href="/partners">Наши партнёры</a>
+            <a  href="/frendi">Наши Друзья</a>
+            <a  href="/vragi">Враги</a>
+            <a  href="/pozor">Доска позора</a>
+            <a  href="/hvala">Доска почёта</a>
+            <a  href="/party">Члены партии</a>
+            <a  href="/literature">Литература</a>
+            <a  href="/zhidhaha">Анекдоты про евреев</a>
+        </nav>
+        </div>
+        <div class='head'><span id='title'>МАКСИЗМ — ОТЦЫ</span></div>
+        <div class='triangle'></div>
+        <div class='main-fat-machi'>
+            <span class='machi'>&lt; ЧиМа &gt;</span>
+            <ul>
+            <li>родился в -17 год от основания Максизма</li>
+            <li>набрал 300 баллов за ЕГЭ(только по физике)</li>
+            <li>на страже трезвости</li>
+            <li>на спорте с гирями</li>
+            <li>против таджиков</li>
+            <li>студент МГУ(Межгалактический Говночистский<br>Университет)</li>
+            <li>сын Хокинга и Поднебесного</li>
+            <li>Аллах запретил что-либо больше про него говорить</li>
+            <li>говорить нечего</li>
+            </ul>
+            <img src='static/imgs/m1.png' class='machi-img'>
+        </div>
+        <div class='main-fat-gibr'>
+            <span class='gibr'>&lt; ГИБРИД &gt;</span>
+            <ul>
+            <li>родился в -17 год до основания Максизма</li>
+            <li>заблудшая душа, вышедшая на путь света<br>в 10 группу</li>
+            <li>на страже нетрезвости (МСМК по литроболу)</li>
+            <li>и кузнец, и жнец, и на дуде игрец, и пиздец</li>
+            <li>изучает С#</li>
+            <li>мученик Игоря Николаевича</li>
+            <li>светило асторномической пивной науки</li>
+            <li>опекун котобога(Печа)</li>
+            <li>Ленафаг</li>
+            </ul>
+            <img src='static/imgs/m2.png' class='gibr-img'>
+        </div>
+        <div class='main-fat-paw'>
+            <span class='paw'>&lt; PAWLO &gt;</span>
+            <ul>
+            <li>родился в -17 год до основания Максизма</li>
+            <li>на страже нетрезвости (KMC по литроболу)</li>
+            <li>у него пососал КалКалыч</li>
+            <li>имеет 5 личностей</li>
+            <li>светило астрoномической пивной науки</li>
+            <li>опекун котобогини(Муська)</li>
+            <li>Ульянафаг с опытом</li>
+                        
+            </ul>
+            <img src='static/imgs/p.png' class='paw-img'>
+        </div>
+        <script src='static/js.js'></script>
+    </body>
+</html>
+

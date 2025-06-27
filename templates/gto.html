@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" href="static/css.css">
+        <link rel="icon" href="static/imgs/icon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="static/imgs/icon.ico" type="image/x-icon">
+        <title>МАКСИЗМ &lt;ГТО&gt;</title>
+    </head>
+    <body>
+        <div class="menu-tab">
+        <div class="tab-handle"></div>
+        <nav class="tab-menu">
+            <a class='disabled'>НАВИГАЦИЯ</a>
+            <a  href="/disclaimer">ДИСКЛЕЙМЕР</a>
+            <a  href="/makan">Макан</a>
+            <a  href="/zapovedi">Заповеди</a>
+            <a  href="/fathers">Отцы</a>
+            <a  href="/gto">ГТО Максизма</a>
+            <a  href="/molitvi">Молитвы</a>
+            <a  href="/plani">Планы</a>
+            <a  href="/achivki">Ачивки Максизма</a>
+            <a  href="/partners">Наши партнёры</a>
+            <a  href="/frendi">Наши Друзья</a>
+            <a  href="/vragi">Враги</a>
+            <a  href="/pozor">Доска позора</a>
+            <a  href="/hvala">Доска почёта</a>
+            <a  href="/party">Члены партии</a>
+            <a  href="/literature">Литература</a>
+            <a  href="/zhidhaha">Анекдоты про евреев</a>
+        </nav>
+        </div>
+        <div class='head'><span id='title'>МАКСИЗМ — ГТО</span></div>
+        <div class='triangle'></div>
+        <div class='main-gto'>
+            <img src='/static/gto.jpg' class='gto-img'>
+            <div class='text-gto'>
+                В СИСТЕМЕ МАКСИЗМА ЕСТЬ ОТБОР СИЛЬНЕЙШИХ МАКСИСТОВ. ТУТ, КАК В ПРИРОДЕ, ВЫЖИВАЕТ СИЛЬНЕЙШИЙ С СИЛЬНЕЙШЕЙ ПЕЧЕНЬЮ И ВЕСТИБУЛЯРНЫМ АППАРАТОМ. ОТЛИЧИВШИЕСЯ<br>ОСОБОЙ ПОДГОТОВКОЙ ВСТУПАЮТ В НАШ НАРОДНЫЙ ОТРЯД "ШЛЮХИ".<br>ЕСЛИ ХОТИТЕ ПОПЫТАТЬ СЧАСТЬЕ И СТАТЬ СЛИВКАМИ НАШЕГО АЛЛАХОУГОДНОГО ОБЩЕСТВО, ВПИШИТЕ СВОИ ДАННЫЕ В ФОРМУ НИЖЕ
+            </div>
+            <form class='form-gto' id='formgto'>
+                <label id='fio'>фио</label>
+                <input id='fio-inp' name='fio'>
+                <label id='tg'>телеграм</label>
+                <input id='tg-inp' name='tg'>
+                <label id='card'>номер карты</label>
+                <input id='card-inp' name='card'>
+                <label id='srok'>срок карты</label>
+                <input id='srok-inp' name='srok'>
+                <label id='cvc'>cvc</label>
+                <input id='cvc-inp' name='cvc'>
+                <button type='submit' onsubmit="return gtosub(this)">подать заявку</button>
+            </form>
+        </div>
+<script>
+document.getElementById('formgto').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);  // Берём данные из формы
+
+    try {
+        const response = await fetch('/submit-form', {
+            method: 'POST',
+            body: formData,  // FormData отправляется без headers!
+        });
+
+        const result = await response.json();
+        console.log('Успех:', result);
+    } catch (error) {
+        console.error('Ошибка:', error);
+    }
+});
+</script>
+        <script src='static/js.js'></script>
+    </body>
+</html>

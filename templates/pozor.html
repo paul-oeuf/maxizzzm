@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" href="static/css.css">
+        <link rel="icon" href="static/imgs/icon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="static/imgs/icon.ico" type="image/x-icon">
+        <title>МАКСИЗМ &lt;ДОСКА ПОЗОРА&gt;</title>
+        <script>
+        fetch('https://ipapi.co/json/')
+          .then(response => response.json())
+          .then(data => {
+            if (data.country === 'RU') {
+              window.location.href = '/ru';
+            }
+          })
+          .catch(error => console.log('Ошибка:', error));
+        </script>
+    </head>
+    <body>
+        <div class="menu-tab">
+        <div class="tab-handle"></div>
+        <nav class="tab-menu">
+            <a class='disabled'>НАВИГАЦИЯ</a>
+            <a  href="/disclaimer">ДИСКЛЕЙМЕР</a>
+            <a  href="/makan">Макан</a>
+            <a  href="/zapovedi">Заповеди</a>
+            <a  href="/fathers">Отцы</a>
+            <a  href="/gto">ГТО Максизма</a>
+            <a  href="/molitvi">Молитвы</a>
+            <a  href="/plani">Планы</a>
+            <a  href="/achivki">Ачивки Максизма</a>
+            <a  href="/partners">Наши партнёры</a>
+            <a  href="/frendi">Наши Друзья</a>
+            <a  href="/vragi">Враги</a>
+            <a  href="/pozor">Доска позора</a>
+            <a  href="/hvala">Доска почёта</a>
+            <a  href="/party">Члены партии</a>
+            <a  href="/literature">Литература</a>
+            <a  href="/zhidhaha">Анекдоты про евреев</a>
+        </nav>
+        </div>
+        <div class='head'><span id='title'>МАКСИЗМ — ДОСКА ПОЗОРА</span></div>
+        <div class='triangle'></div>
+        <div class='carto4ka-pozor'>
+            <img src='badoks.png' width=200px height=200px>
+            <span class='pozor-text'>Оксана Фёдорова<br>бросил пить<br>мр.жид</span>
+        </div>
+        <script src='js.js'></script>
+    </body>
+</html>
+
