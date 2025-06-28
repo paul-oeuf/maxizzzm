@@ -51,9 +51,9 @@ async def submit_form(
     }
 @app.get('/get-aneks')
 async def getaneks(request: Request):
-    with connect('static/aneki.db') as db:
+    with connect('static/storage.db') as db:
         c=db.cursor()
-        c.execute("SELECT rowid,likes,dis FROM storage")
+        c.execute("SELECT rowid,likes,dis FROM aneki")
         fall=c.fetchall()
     aaa=[]
     for i in fall:
@@ -61,36 +61,56 @@ async def getaneks(request: Request):
     return aaa
 @app.get('/zhidhaha/{no}')
 async def getanek(request: Request,no:int):
-    with connect('static/aneki.db') as db:
+    with connect('static/storage.db') as db:
         c=db.cursor()
-        c.execute("SELECT * FROM storage WHERE rowid=?",(int(no),))
+        c.execute("SELECT * FROM aneki WHERE rowid=?",(int(no),))
         text,likes,dis=c.fetchone()
     return templates.TemplateResponse("anek.html", {"request": request,'no':no,'text':text,'likes':likes,'dis':dis})
 @app.post("/like/{anek_id}")
 async def like_anek(anek_id: int):
-    with connect('static/aneki.db') as db:
+    with connect('static/storage.db') as db:
         c = db.cursor()
-        c.execute("UPDATE storage SET likes = likes + 1 WHERE rowid=?", (anek_id,))
+        c.execute("UPDATE aneki SET likes = likes + 1 WHERE rowid=?", (anek_id,))
         db.commit()
         return JSONResponse({"status": "success", "likes": get_likes(db, anek_id)})
 
 @app.post("/dislike/{anek_id}")
 async def dislike_anek(anek_id: int):
-    with connect('static/aneki.db') as db:
+    with connect('static/storage.db') as db:
         c = db.cursor()
-        c.execute("UPDATE storage SET dis = dis + 1 WHERE rowid=?", (anek_id,))
+        c.execute("UPDATE aneki SET dis = dis + 1 WHERE rowid=?", (anek_id,))
         db.commit()
         return JSONResponse({"status": "success", "dislikes": get_dislikes(db, anek_id)})
 
 def get_likes(db, anek_id):
     c = db.cursor()
-    c.execute("SELECT likes FROM storage WHERE rowid=?", (anek_id,))
+    c.execute("SELECT likes FROM aneki WHERE rowid=?", (anek_id,))
     return c.fetchone()[0]
 
 def get_dislikes(db, anek_id):
     c = db.cursor()
-    c.execute("SELECT dis FROM storage WHERE rowid=?", (anek_id,))
+    c.execute("SELECT dis FROM aneki WHERE rowid=?", (anek_id,))
     return c.fetchone()[0]
+@app.get('/api/pozor')
+async def apipozor(request: Request):
+    with connect('static/storage.db') as db:
+        c=db.cursor()
+        c.execute("SELECT * FROM pozor")
+        pozorf=c.fetchall()
+    pozord=[]
+    for i in pozorf:
+        pozord+=[{'image':i[0],'name':i[1],'text':i[2]}]
+    return {'data':pozord,'status':'success'}
+@app.get('/api/hvala')
+async def apipozor(request: Request):
+    with connect('static/storage.db') as db:
+        c=db.cursor()
+        c.execute("SELECT * FROM hvala")
+        hvalaf=c.fetchall()
+    hvalad=[]
+    for i in hvalaf:
+        hvalad+=[{'image':i[0],'name':i[1],'text':i[2]}]
+    return {'data':hvalad,'status':'success'}
 @app.get('/')
 async def main(request: Request):
     return templates.TemplateResponse("main.html", {"request": request})
