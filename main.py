@@ -116,7 +116,7 @@ async def main(request: Request):
     return templates.TemplateResponse("main.html", {"request": request})
 @app.get('/{page}')
 async def gto(request: Request,page:str):
-    if page in '404 gto fathers zhidhaha disclaimer hvala main makan molitvi party plani pozor sadrussia zapovedi'.split():
+    if page in 'frendi vragi partners 404 gto fathers zhidhaha disclaimer hvala main makan molitvi party plani pozor sadrussia zapovedi'.split():
         return templates.TemplateResponse(page+".html", {"request": request})
     else:
         return templates.TemplateResponse("404.html", {"request": request})
