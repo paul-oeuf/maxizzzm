@@ -6,16 +6,14 @@
         <link rel="icon" href="static/imgs/icon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="static/imgs/icon.ico" type="image/x-icon">
         <title>МАКСИЗМ &lt;ДИСКЛЕЙМЕР&gt;</title>
-        <script>
-        fetch('https://ipapi.co/json/')
-          .then(response => response.json())
-          .then(data => {
-            if (data.country === 'RU') {
-              window.location.href = '/ru';
-            }
-          })
-          .catch(error => console.log('Ошибка:', error));
-        </script>
+	<style>
+  		body:not(.loaded) {
+    		visibility: hidden;
+    		overflow: hidden;
+    		height: 100vh;
+  		}
+	</style>
+	<script src='/static/ru.js'></script>
     </head>
     <body>
         <div class="menu-tab">
